@@ -2,8 +2,8 @@
 class Code
   attr_accessor :code
 
-  def initialize
-    self.code = Array.new(HOLES)
+  def initialize(value = nil)
+    self.code = value or randomize
   end
 
   def randomize
