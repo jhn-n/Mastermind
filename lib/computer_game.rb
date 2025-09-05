@@ -10,11 +10,12 @@ class ComputerGame < Game
   end
 
   def winning_round?
-    puts "(#{@candidates.length} remaining candidates)"
     guess = @candidates.sample
     feedback = @code.feedback(guess)
+    sleep 1
+    print "(#{@candidates.length} remaining candidates)\tGuess: #{guess.join}\t"
+    puts "Feedback: #{feedback[0]} reds, #{feedback[1]} whites"
     @candidates.filter! { |candidate| Code.new(candidate).feedback(guess) == feedback }
-    puts "Guess: #{guess.join}\tFeedback: #{feedback[0]} reds, #{feedback[1]} whites"
     feedback == [HOLES, 0]
   end
 end
